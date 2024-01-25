@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import "./Cell.css";
 
-function Cell({ playerMove, togglePlayerMove, row, column, updateBoard }) {
+function Cell({
+  playerMove,
+  togglePlayerMove,
+  row,
+  column,
+  updateBoard,
+  winner,
+}) {
   // Every cell starts as a blank slate
   const [cellValue, setCellValue] = useState(null);
 
@@ -12,9 +19,10 @@ function Cell({ playerMove, togglePlayerMove, row, column, updateBoard }) {
   );
 
   function makeMove() {
-    if (cellValue) return;
+    if (cellValue || winner) return;
     setCellValue(playerMove);
     updateBoard(row, column, playerMove);
+    console.log(winner);
     togglePlayerMove();
   }
 }

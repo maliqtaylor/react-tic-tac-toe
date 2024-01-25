@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import Cell from "../Cell/Cell";
 import "./Board.css";
 
-function Board() {
+function Board({ winner, setWinner }) {
   const [playerMove, setPlayerMove] = useState("X");
   const [boardState, setBoardState] = useState(
     Array.from({ length: 3 }, () => Array.from({ length: 3 }).fill(null))
   );
-  const [winner, setWinner] = useState(null);
 
   const gameBoard = createBoard();
 
@@ -67,7 +66,6 @@ function Board() {
     if (checkRows() || checkColums() || checkDiagonals()) {
       setWinner(move);
     }
-    console.log(winner);
   }
 
   return (
@@ -96,6 +94,7 @@ function Board() {
           row={rowNumber}
           column={i}
           updateBoard={updateBoard}
+          winner={winner}
         />
       );
     }
